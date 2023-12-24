@@ -53,9 +53,6 @@ const ordersToShow = computed<Order[]>(() => selectedOrderId.value
   : parsedOrders.value
 )
 
-watch(pending, () => {
-  if (response.value) console.log(JSON.parse(response.value).response.data.message)
-})
 
 
 </script>
