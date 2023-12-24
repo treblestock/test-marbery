@@ -31,10 +31,6 @@
         :items="selectOptions"
         @update:model-value="handleYearSelect"
       />
-      <!-- <div class="select-btns">
-        <Button class="select-btn" color="purple">Показать</Button>
-        <Button class="select-btn" color="purple-reverse">Сбросить</Button>
-      </div> -->
     </div>
 
   </div>

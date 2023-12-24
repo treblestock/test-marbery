@@ -53,9 +53,5 @@ const ordersToShow = computed<Order[]>(() => selectedOrderId.value
   : parsedOrders.value
 )
 
-// watch(pending, () => {
-//   if (!pending.value) console.log(parsedOrders.value)
-// })
-
 
 </script>
