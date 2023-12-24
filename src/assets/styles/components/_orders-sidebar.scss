@@ -1,0 +1,37 @@
+.orders-sidebar {
+  & .block {
+    padding: 16px;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & .date-range {
+    margin-bottom: 10px;
+  }
+
+
+  & .button {
+    display: none;
+    margin-bottom: 15px;
+
+    @include active-by("xl") {
+      display: block;
+    }
+  }
+
+
+  & .select-trigger {
+    margin-bottom: 10px;
+  }
+
+  & .select-btns {
+    display: flex;
+    gap: 5px;
+  }
+  & .select-btn {
+    flex: 1 1 auto;
+  }
+}
