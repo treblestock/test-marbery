@@ -43,15 +43,19 @@ function updateQuery(queries: Queries) {
 }
 
 
-const {pending, data: orders} = useFetch<string>("method/orders.getTest");
-const parsedOrders = computed<Order[]>(() => orders.value
-  ? (JSON.parse(orders.value) as ApiResponese).response.data.orders
+const {pending, data: response} = useFetch<string>("method/orders.getTest");
+const parsedOrders = computed<Order[]>(() => response.value
+  ? (JSON.parse(response.value) as ApiResponese).response.data.orders
   : []
 )
 const ordersToShow = computed<Order[]>(() => selectedOrderId.value 
   ? parsedOrders.value.filter(order => order.id === selectedOrderId.value) 
   : parsedOrders.value
 )
+
+watch(pending, () => {
+  if (response.value) console.log(JSON.parse(response.value).response.data.message)
+})
 
 
 </script>
