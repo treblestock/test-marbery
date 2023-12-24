@@ -1,0 +1,78 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "#imports": [
+        "./types/nitro-imports"
+      ],
+      "#paths": [
+        "../node_modules/.pnpm/nuxt@3.8.2_qb26myshdvkt5vu5yn52a3mrvi/node_modules/nuxt/dist/core/runtime/nitro/paths"
+      ],
+      "~": [
+        "../src"
+      ],
+      "~/*": [
+        "../src/*"
+      ],
+      "@": [
+        "../src"
+      ],
+      "@/*": [
+        "../src/*"
+      ],
+      "~~": [
+        "./.."
+      ],
+      "~~/*": [
+        "../*"
+      ],
+      "@@": [
+        "./.."
+      ],
+      "@@/*": [
+        "../*"
+      ],
+      "assets": [
+        "../src/assets"
+      ],
+      "assets/*": [
+        "../src/assets/*"
+      ],
+      "public": [
+        "../src/public"
+      ],
+      "public/*": [
+        "../src/public/*"
+      ],
+      "pinia": [
+        "../node_modules/.pnpm/pinia@2.1.7_dembj2eby4ermcojoe7jay3m6m/node_modules/pinia/dist/pinia"
+      ]
+    }
+  },
+  "include": [
+    "./types/nitro-nuxt.d.ts",
+    "../node_modules/.pnpm/@pinia+nuxt@0.5.1_dembj2eby4ermcojoe7jay3m6m/node_modules/@pinia/nuxt/runtime/server",
+    "../node_modules/.pnpm/@nuxtjs+device@3.1.1/node_modules/@nuxtjs/device/runtime/server",
+    "../node_modules/.pnpm/@vueuse+nuxt@10.7.0_nuxt@3.8.2+vue@3.3.13/node_modules/@vueuse/nuxt/runtime/server",
+    "../../../../../runtime/server",
+    "../node_modules/.pnpm/@nuxt+telemetry@2.5.3/node_modules/@nuxt/telemetry/runtime/server",
+    "./types/nitro.d.ts",
+    "../**/*",
+    "../src/server/**/*"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../node_modules/.pnpm/nuxt@3.8.2_qb26myshdvkt5vu5yn52a3mrvi/node_modules/nuxt/node_modules",
+    "../dist"
+  ]
+}
