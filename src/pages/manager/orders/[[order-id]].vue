@@ -6,10 +6,7 @@
       />
     </template>
     <template #default>
-      <OrdersList
-        :pending="!ordersToShow.length"
-        :orders="ordersToShow"
-      />
+      <OrdersList :orders="ordersToShow"/>
     </template>
   </Layout>
 </template>

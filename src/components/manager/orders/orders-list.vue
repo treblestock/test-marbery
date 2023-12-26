@@ -1,9 +1,10 @@
 <template>
   <div class="orders-list">
-    <Empty v-if="pending" />
+    <Empty v-if="!orders || !orders.length" />
     <div class="orders-list__orders">
-      <NuxtLink :to="`/manager/orders/${order.id}`"
+      <NuxtLink 
         v-for="order in props.orders" :key="order.id"
+        :to="`/manager/orders/${order.id}`"
       >
         <StatusCard class="orders-list__order">
           Id: {{ order.id }}
@@ -21,7 +22,6 @@ import { Empty } from "~/ui/empty";
 import type { Order } from "./type";
 
 const props = defineProps<{
-  pending: boolean
   orders: Order[] | null
 }>()
 
