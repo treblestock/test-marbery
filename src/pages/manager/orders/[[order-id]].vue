@@ -7,7 +7,7 @@
     </template>
     <template #default>
       <OrdersList
-        :pending="!ordersToShow.length && pending"
+        :pending="!ordersToShow.length"
         :orders="ordersToShow"
       />
     </template>
@@ -30,26 +30,19 @@ type ApiResponese = {
 const route = useRoute()
 const router = useRouter()
 
-const selectedOrderId = computed(() => route.params.orderid[0])
+const selectedOrderId = computed(() => route.params.orderid)
 
 
-function updateQuery(queries: Queries) {
-  const url = new URL(route.path, import.meta.url)
-  for (const query in queries) {
-    const queryValue = queries[query as keyof Queries]
-    if (typeof queryValue === "string") url.searchParams.append(query, queryValue)
-  }
-  router.push(route.path + '?' + url.searchParams.toString())
-}
+const updateQuery = (query: Queries) => router.replace({query})
 
 
-const {pending, data: response} = useFetch<string>("method/orders.getTest");
+const {data: response} = useFetch<string>("method/orders.getTest");
 const parsedOrders = computed<Order[]>(() => response.value
   ? (JSON.parse(response.value) as ApiResponese).response.data.orders
   : []
 )
-const ordersToShow = computed<Order[]>(() => selectedOrderId.value 
-  ? parsedOrders.value.filter(order => order.id === selectedOrderId.value) 
+const ordersToShow = computed<Order[]>(() => selectedOrderId.value
+  ? parsedOrders.value.filter(order => order.id === selectedOrderId.value)
   : parsedOrders.value
 )
 

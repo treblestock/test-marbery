@@ -1,4 +1,14 @@
 .orders-sidebar {
+  & .back-button {
+    display: none;
+    margin-bottom: 15px;
+
+    @include active-by("xl") {
+      display: block;
+    }
+  }
+
+
   & .block {
     padding: 16px;
     margin-bottom: 15px;
@@ -9,29 +19,31 @@
   }
 
   & .date-range {
-    margin-bottom: 10px;
-  }
-
-
-  & .button {
-    display: none;
     margin-bottom: 15px;
-
-    @include active-by("xl") {
-      display: block;
-    }
   }
 
-
-  & .select-trigger {
-    margin-bottom: 10px;
+  & .product-search {
+    margin-bottom: 15px;
   }
 
-  & .select-btns {
+  & .year-select {
+    margin-bottom: 15px;
+  }
+
+  & .search-sorts {
     display: flex;
     gap: 5px;
   }
-  & .select-btn {
-    flex: 1 1 auto;
+
+  & .search-sort-icon {
+    &.active {
+      @include btn-variant(
+        $bg: var(--bg_hover_btn_purple_reverse),
+        $color: var(--color_btn),
+        $color-hover: var(--color_btn), 
+        $bg-hover: var(--bg_hover_btn_purple_reverse),
+      );
+    }
   }
+  
 }

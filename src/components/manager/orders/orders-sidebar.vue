@@ -2,9 +2,9 @@
   <div class="orders-sidebar">
     <Button 
       to="/manager/orders"
-      class="button"
+      class="back-button"
       size="small" 
-      color="purple-reverse"
+      color="light-purple-reverse"
       width="full"
     >назад</Button>
 
@@ -14,18 +14,32 @@
         @change="handleSelectDate"
       />
       <Search 
-        :search-query="searchValue"
-        :type="searchType"
+        class="product-search"
+        :search-query="selectedSearchValue"
+        :type="selectedSearchType"
         :types="searchOptions"
         @update:search-query="handleSearchValueUpdate"
         @update:type="handleSearchTypeUpdate"
       />
+      <div class="search-sorts">
+        <Button 
+          v-for="(iconClass, searchType) in searchTypeToIcon" 
+          :key="searchType"
+          class="search-sort-icon"
+          :class="{active: selectedSearchType === searchType}"
+          size="small"
+          color="purple-reverse"
+          @click="selectedSearchType = searchType"
+        >
+          <i :class="['fa-solid', iconClass]"></i>
+        </Button>
+      </div>
       
     </div>
 
     <div class="block">
       <Select 
-        class="select-trigger"
+        class="year-select"
         name="year"
         :model-value="selectedYear"
         :items="selectOptions"
@@ -96,24 +110,33 @@ const searchOptions: SearchTypes = {
     title: "Плательщик, ребенок",
   },
 }
-const searchType = useState<keyof typeof searchOptions>(() => "order_number")
-const searchValue = useState<string>(() => "")
+const searchTypeToIcon = {
+  order_number: "fa-thumbs-up",
+  psid: "fa-thumbs-down",
+  client_id: "fa-redo-alt",
+  phone: "fa-cog",
+  email: "fa-cloud-upload",
+  payer: "fa-briefcase",
+} as const
+
+const selectedSearchType = useState<keyof typeof searchOptions>(() => "order_number")
+const selectedSearchValue = useState<string>(() => "")
 
 function handleSearchValueUpdate(value: string) {
-  searchValue.value = value
+  selectedSearchValue.value = value
   if (value === "") {
     queries.value.search_type = undefined
     queries.value.search_value = undefined
   } else {
-    queries.value.search_type = searchType.value
-    queries.value.search_value = searchValue.value
+    queries.value.search_type = selectedSearchType.value
+    queries.value.search_value = selectedSearchValue.value
   }
   emit('update:searchQueries', queries.value)
 }
 
 function handleSearchTypeUpdate(type: string) {
-  searchValue.value = ""
-  searchType.value = type
+  selectedSearchType.value = type
+  selectedSearchValue.value = ""
   queries.value.search_type = undefined
   queries.value.search_value = undefined
   emit('update:searchQueries', queries.value)
